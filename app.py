@@ -21,7 +21,7 @@ def webhook():
         side = data['side']
         quantity = data['quantity']
         telegramBotApi = data['telegramBotApi']
-        telegramUserId = data['telegramUserId']
+        chatId = data['chatId']
         binanceApiKey = data['binanceApiKey']
         binanceSecretKey = data['binanceSecretKey']
         params = {
@@ -31,8 +31,8 @@ def webhook():
             "quantity": quantity,
         }
         Client(binanceApiKey, binanceSecretKey).new_order(**params)
-        telebot.TeleBot(telegramBotApi).send_message(telegramUserId,
-                                                     f"{ticker} {side}ING on {exchange} \nQuantity : {quantity} ")
+        telebot.TeleBot(telegramBotApi).send_message(chatId,
+                                                     f"{ticker} \n{side} Emri geldi... \nFiyat : {price}  \nAlinanMiktar : {quantity} \nBEREKETLI KAZANÇLAR ")
     except:
         pass
     return {
